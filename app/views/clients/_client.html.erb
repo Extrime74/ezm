@@ -1,22 +1,23 @@
 <div id="<%= dom_id client %>">
   <p class="my-5">
-    <strong class="block font-medium mb-1">First name:</strong>
-    <%= client.first_name %>
+    <strong class="block font-medium mb-1">Имя, Фамилия:</strong>
+    <%= client.first_name + ", " + client.last_name%>
   </p>
 
   <p class="my-5">
-    <strong class="block font-medium mb-1">Last name:</strong>
-    <%= client.last_name %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Phone number:</strong>
+    <strong class="block font-medium mb-1">Номер телефона:</strong>
     <%= client.phone_number %>
   </p>
 
+  
   <p class="my-5">
-    <strong class="block font-medium mb-1">Loyal client:</strong>
-    <%= client.loyal_client %>
+    <strong class="block font-medium mb-1">Постоянный:</strong>
+    <%= client.loyal_client? ? "✅" : "❌" %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Проблемный:</strong>
+    <%= client.problematic_client? ? "✅" : "❌" %>
   </p>
 
 </div>

@@ -1,51 +1,57 @@
 <div id="<%= dom_id order %>">
   <p class="my-5">
-    <strong class="block font-medium mb-1">Client:</strong>
-    <%= order.client_id %>
+    <strong class="block font-medium mb-1">Номер заказа</strong>
+    <%= order.id%>
   </p>
 
   <p class="my-5">
-    <strong class="block font-medium mb-1">Device type:</strong>
+    <strong class="block font-medium mb-1">Клиент</strong>
+    <%= link_to 'order.client.first_name + ", " + order.client.last_name', @order_client, class: "bg-white inline-block border-l border-t border-r rounded-t py-2 px-4 text-blue-700 font-semibold"%>
+    <%= order.client.first_name + ", " + order.client.last_name%>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Тип устройства:</strong>
     <%= order.device_type %>
   </p>
 
   <p class="my-5">
-    <strong class="block font-medium mb-1">Device brand:</strong>
+    <strong class="block font-medium mb-1">Бренд:</strong>
     <%= order.device_brand %>
   </p>
 
   <p class="my-5">
-    <strong class="block font-medium mb-1">Device model:</strong>
+    <strong class="block font-medium mb-1">Модель:</strong>
     <%= order.device_model %>
   </p>
 
   <p class="my-5">
-    <strong class="block font-medium mb-1">Device serial:</strong>
+    <strong class="block font-medium mb-1">Серийный номер:</strong>
     <%= order.device_serial %>
   </p>
 
   <p class="my-5">
-    <strong class="block font-medium mb-1">Device set:</strong>
+    <strong class="block font-medium mb-1">Комплектация:</strong>
     <%= order.device_set %>
   </p>
 
   <p class="my-5">
-    <strong class="block font-medium mb-1">Device condition:</strong>
+    <strong class="block font-medium mb-1">Состояние устройства:</strong>
     <%= order.device_condition %>
   </p>
 
   <p class="my-5">
-    <strong class="block font-medium mb-1">Malfunction:</strong>
+    <strong class="block font-medium mb-1">Неисправность:</strong>
     <%= order.malfunction %>
   </p>
 
   <p class="my-5">
-    <strong class="block font-medium mb-1">Estimated cost:</strong>
-    <%= order.estimated_cost %>
+    <strong class="block font-medium mb-1">Примерная стоимость:</strong>
+    <%= order.estimated_cost + "р"%>
   </p>
 
   <p class="my-5">
-    <strong class="block font-medium mb-1">Comment:</strong>
+    <strong class="block font-medium mb-1">Комментарий:</strong>
     <%= order.comment %>
   </p>
 
