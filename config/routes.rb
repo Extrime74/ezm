@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   resources :orders
-  resources :clients
+  resources :clients do
+    resources :orders
+  end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   resources :clients, only: [:new, :create]
 
@@ -9,5 +11,5 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
 
   # Defines the root path route ("/")
-  # root "posts#index"
+  root "orders#index"
 end
