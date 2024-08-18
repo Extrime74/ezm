@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_08_18_161020) do
+ActiveRecord::Schema[7.1].define(version: 2024_08_18_165638) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -21,6 +21,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_18_161020) do
     t.boolean "loyal_client", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "problematic_client", default: false
     t.index ["first_name"], name: "index_clients_on_first_name"
     t.index ["id"], name: "index_clients_on_id"
     t.index ["last_name"], name: "index_clients_on_last_name"
