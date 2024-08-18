@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_08_18_152637) do
+ActiveRecord::Schema[7.1].define(version: 2024_08_18_161020) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -25,6 +25,21 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_18_152637) do
     t.index ["id"], name: "index_clients_on_id"
     t.index ["last_name"], name: "index_clients_on_last_name"
     t.index ["phone_number"], name: "index_clients_on_phone_number"
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.integer "client_id"
+    t.string "device_type"
+    t.string "device_brand"
+    t.string "device_model"
+    t.string "device_serial"
+    t.string "device_set"
+    t.string "device_condition"
+    t.string "malfunction"
+    t.string "estimated_cost"
+    t.text "comment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end
