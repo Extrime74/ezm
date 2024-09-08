@@ -5,17 +5,30 @@
 
   <% content_for :title, "Clients" %>
 
-  <div class="flex justify-between items-center">
-    <h1 class="font-bold text-4xl">Clients</h1>
-    <%= link_to "New client", new_client_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
+  <div class="flex justify-between items-center mb-10">
+    <h1 class="font-bold text-4xl">Клиенты</h1>
+    <%= link_to "Новый клиент", new_client_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
   </div>
 
-  <div id="clients" class="min-w-full">
-    <% @clients.each do |client| %>
-      <%= render client %>
-      <p>
-        <%= link_to "Show this client", client, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-      </p>
-    <% end %>
-  </div>
+  <table class="min-w-full bg-white border border-gray-200">
+    <thead>
+      <tr class="bg-gray-100">
+        <th class="py-2 px-4 border-b">Имя</th>
+        <th class="py-2 px-4 border-b">Фамилия</th>
+        <th class="py-2 px-4 border-b">Телефон</th>
+        <th class="py-2 px-4 border-b">Постоянный, Проблемный</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @clients.each do |client| %>
+        <tr class="hover:bg-gray-50 cursor-pointer" onclick="window.location='<%= client_path(client) %>'">
+          <td class="py-2 px-4 border-b text-center"><%= client.first_name %></td>
+          <td class="py-2 px-4 border-b text-center"><%= client.last_name %></td>
+          <td class="py-2 px-4 border-b text-center"><%= client.phone_number %></td>
+          <td class="py-2 px-4 border-b text-center"><%= client.loyal_client? ? "✅" : "❌" %>,  <%= client.problematic_client? ? "✅" : "❌" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 </div>
+

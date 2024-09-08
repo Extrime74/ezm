@@ -11,13 +11,11 @@
 
   
   <p class="my-5">
-    <strong class="block font-medium mb-1">Постоянный:</strong>
-    <%= client.loyal_client? ? "✅" : "❌" %>
+    <strong class="font-medium">Постоянный:</strong> <%= client.loyal_client? ? "✅" : "❌" %>
   </p>
 
   <p class="my-5">
-    <strong class="block font-medium mb-1">Проблемный:</strong>
-    <%= client.problematic_client? ? "✅" : "❌" %>
+    <strong class="font-medium">Проблемный:</strong> <%= client.problematic_client? ? "✅" : "❌" %>
   </p>
 
 </div>

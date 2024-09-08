@@ -1,42 +1,36 @@
 <div class="w-full">
-
   <% if notice.present? %>
-
     <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
-
   <% end %>
-
 
   <% content_for :title, "Orders" %>
 
-
-  <div class="flex justify-between items-center mb-10">
-
+  <div class="flex justify-between items-center mb-10 ">
     <h1 class="font-bold text-4xl">Заказы</h1>
-
     <%= link_to "Новый заказ", new_order_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
-
   </div>
 
-
-  <div id="orders" class="flex flex-wrap gap-4">
-
-    <% @orders.each do |order| %>
-
-      <div class="flex-1 p-4 border rounded-lg shadow">
-
-        <%= render partial: "order_short", locals: { order: order } %>
-
-        <p>
-
-          <%= link_to "Show this order", order, class: "ml-2 rounded-lg py-2 px-4 bg-gray-100 inline-block font-medium" %>
-
-        </p>
-
-      </div>
-
-    <% end %>
-
-  </div>
-
+  <table class="min-w-full rounded-lg py-3 px-5 bg-white border border-gray-200">
+    <thead>
+      <tr class="bg-gray-200">
+        <th class="py-2 px-4 border-b">Заказ №</th>
+        <th class="py-2 px-4 border-b">Устройство</th>
+        <th class="py-2 px-4 border-b">Неисправность</th>
+        <th class="py-2 px-4 border-b">Клиент</th>
+        
+      </tr>
+    </thead>
+    <tbody>
+      <% @orders.each do |order| %>
+        <tr class="hover:bg-gray-50 cursor-pointer" onclick="window.location='<%= order_path(order) %>'">
+          <td class="py-2 px-4 border-b text-center"><%= order.id %></td>
+          <td class="py-2 px-4 border-b text-center"><%= order.device_brand + ", " + order.device_model %></td>
+          <td class="py-2 px-4 border-b text-center"><%= order.malfunction %></td>
+          <td class="py-2 px-4 border-b text-center"><%= order.client.first_name + ', ' + order.client.first_name%></td>
+          
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 </div>
+
