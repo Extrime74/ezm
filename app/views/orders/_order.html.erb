@@ -6,10 +6,28 @@
     <h1 class="font-bold text-4xl">Заказ №<%= order.id%></h1>
   </div>
 
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Статус</strong>
-    <%= order.client.phone_number %>
-  </p>
+<p class="my-5">
+
+  <strong class="block font-medium mb-1">Статус</strong>
+
+  <%= form_with model: order, local: true do |form| %>
+    <%= form.select :status, 
+        [
+          ['Принят'], 
+          ['На согласовании'], 
+          ['В ремонте'], 
+          ['Ждет запчасти'], 
+          ['Готов'], 
+          ['Выдан'],
+          ['Возвращен по гарантии']
+        ], 
+        { prompt: 'Выберите статус' }, 
+        class: 'form-select' 
+    %>
+    <%= form.submit 'Сохранить', class: 'mt-2 btn btn-primary' %>
+  <% end %>
+
+</p>
 
   <p class="my-5">
     <strong class="block font-medium mb-1">Клиент</strong>
