@@ -15,20 +15,13 @@
     <%= form.label :client_id, "Выберите клиента" %>
     <%= form.select :client_id, Client.all.collect { |client| [client.first_name, client.id] }, { include_blank: true }, class: "client-search block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
     <button type="button" id="new-client-btn" class="mt-2 px-4 py-2 bg-blue-500 text-white rounded">Создать нового клиента</button>
-
   </div>
 
-
   <script>
-
     document.getElementById('new-client-btn').addEventListener('click', function() {
-
-      window.location.href = '<%= new_client_path %>'; // Замените на путь к созданию клиента
-
+      window.location.href = '<%= new_client_path %>';
     });
-
   </script>
-
 
   <div class="my-5">
     <%= form.label :device_type %>

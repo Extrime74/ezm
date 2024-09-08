@@ -1,6 +1,10 @@
 {
   "dependencies": {
+    "@popperjs/core": "^2.11.8",
+    "@preline/collapse": "^2.4.1",
+    "@preline/dropdown": "^2.4.1",
     "@rails/webpacker": "5.4.4",
+    "flowbite": "^2.5.1",
     "webpack": "^4.46.0",
     "webpack-cli": "^3.3.12"
   },
