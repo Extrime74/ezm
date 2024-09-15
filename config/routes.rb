@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
   resources :orders
   resources :clients do
-    resources :orders
+    resources :orders, only: [:clients_orders] # Или другой метод, который нужен
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   resources :clients, only: [:new, :create]
+  
+  get 'clients/:client_id/orders', to: 'orders#clients_orders', as: 'client_orders'
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
   # Can be used by load balancers and uptime monitors to verify that the app is live.

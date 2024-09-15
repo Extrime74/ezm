@@ -1,0 +1,33 @@
+<div class="w-full">
+  <% if notice.present? %>
+    <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
+  <% end %>
+
+  <% content_for :title, "Заказы клиента" %>
+
+  <div class="flex justify-between items-center mb-10">
+    <h1 class="font-bold text-4xl">Заказы клиента: <%= @client.first_name + ' ' + @client.last_name %></h1>
+    
+  </div>
+
+  <table class="min-w-full rounded-lg py-3 px-5 bg-white border border-gray-200">
+    <thead>
+      <tr class="bg-gray-200">
+        <th class="py-2 px-4 border-b">Заказ №</th>
+        <th class="py-2 px-4 border-b">Устройство</th>
+        <th class="py-2 px-4 border-b">Статус</th>
+        <th class="py-2 px-4 border-b">Неисправность</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @orders.each do |order| %>
+        <tr class="hover:bg-gray-50 cursor-pointer" onclick="window.location='<%= order_path(order) %>'">
+          <td class="py-2 px-4 border-b text-center"><%= order.id %></td>
+          <td class="py-2 px-4 border-b text-center"><%= order.device_brand + ", " + order.device_model %></td>
+          <td class="py-2 px-4 border-b text-center"><%= order.status %></td>
+          <td class="py-2 px-4 border-b text-center"><%= order.malfunction %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

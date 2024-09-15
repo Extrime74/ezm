@@ -6,6 +6,11 @@ class OrdersController < ApplicationController
     @orders = Order.all
   end
 
+  def clients_orders
+    @client = Client.find(params[:client_id])
+    @orders = @client.orders
+  end
+
   # GET /orders/1 or /orders/1.json
   def show
   end
