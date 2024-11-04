@@ -50,6 +50,7 @@ default: &default
 development:
   <<: *default
   compile: true
+  public_output_path: packs
 
   # Reference: https://webpack.js.org/configuration/dev-server/
   dev_server:
@@ -81,7 +82,9 @@ test:
 
 production:
   <<: *default
-
+  public_output_path: packs
+  webpack_compile_output: public/packs
+  
   # Production depends on precompilation of packs prior to booting for performance.
   compile: false
 

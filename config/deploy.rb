@@ -6,6 +6,8 @@ lock '~> 3.19.1'
 set :application, 'EZM'
 set :repo_url, 'git@github.com:Extrime74/ezm.git'
 
+set :nvm_map_bins, %w{node npm yarn yarnpkg rake}
+
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 set :branch, 'main'
@@ -32,7 +34,8 @@ append :linked_files, "config/database.yml", 'config/master.key'
 append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'vendor/javascript', 'storage'
 
 # Default value for default_env is {}
-# set :default_env, { path: "/opt/ruby/bin:$PATH" }
+set :default_env, { 'EZM_DATABASE_PASSWORD' => 'ezm_password' }
+
 
 # Default value for local_user is ENV['USER']
 # set :local_user, -> { `git config user.name`.chomp }
@@ -45,3 +48,15 @@ set :keep_releases, 5
 
 Rake::Task['deploy:assets:backup_manifest'].clear_actions
 Rake::Task['deploy:assets:restore_manifest'].clear_actions
+
+before "deploy:assets:precompile", "deploy:yarn_install"
+namespace :deploy do
+  desc "Run rake yarn install"
+  task :yarn_install do
+    on roles(:web) do
+      within release_path do
+        execute("cd #{release_path} && yarn install --silent --no-progress --no-audit --no-optional")
+      end
+    end
+  end
+end

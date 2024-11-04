@@ -81,4 +81,6 @@ production:
   <<: *default
   database: ezm_production
   username: ezm
-  password: <%= ENV["EZM_DATABASE_PASSWORD"] %>
+  password: ezm_password
+  host: 127.0.0.1
+ 

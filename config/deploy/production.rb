@@ -61,7 +61,7 @@
 #   }
 
 set :stage, :production
-server '5.42.73.202', user: 'deploy', roles: %w{app db web}
+server '62.60.153.134', user: 'deploy', roles: %w{app db web}
 
 set :puma_workers, 4
 set :puma_port, 3001

@@ -67,3 +67,5 @@ yarn-error.log
 
 # Это добавьте, если используете Webpack
 /public/dist
+
+/config/credentials/production.key
