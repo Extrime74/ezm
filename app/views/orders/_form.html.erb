@@ -1,0 +1,74 @@
+<%= form_with(model: order, class: "contents") do |form| %>
+  <% if order.errors.any? %>
+    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
+      <h2><%= pluralize(order.errors.count, "error") %> prohibited this order from being saved:</h2>
+
+      <ul>
+        <% order.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="my-5">
+    <%= form.label :client_id, "Выберите клиента" %>
+    <%= form.select :client_id, Client.all.collect { |client| [client.first_name, client.id] }, { include_blank: true }, class: "client-search block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
+    <button type="button" id="new-client-btn" class="mt-2 px-4 py-2 bg-blue-500 text-white rounded">Создать нового клиента</button>
+  </div>
+
+  <script>
+    document.getElementById('new-client-btn').addEventListener('click', function() {
+      window.location.href = '<%= new_client_path %>';
+    });
+  </script>
+
+  <div class="my-5">
+    <%= form.label :device_type %>
+    <%= form.text_field :device_type, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :device_brand %>
+    <%= form.text_field :device_brand, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :device_model %>
+    <%= form.text_field :device_model, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :device_serial %>
+    <%= form.text_field :device_serial, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :device_set %>
+    <%= form.text_field :device_set, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :device_condition %>
+    <%= form.text_field :device_condition, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :malfunction %>
+    <%= form.text_field :malfunction, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :estimated_cost %>
+    <%= form.text_field :estimated_cost, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :comment %>
+    <%= form.text_area :comment, rows: 4, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
+  </div>
+
+  <div class="inline">
+    <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
+  </div>
+<% end %>

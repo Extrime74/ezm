@@ -1,0 +1,43 @@
+<%= form_with(model: client, class: "contents") do |form| %>
+  <% if client.errors.any? %>
+    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
+      <h2><%= pluralize(client.errors.count, "error") %> prohibited this client from being saved:</h2>
+
+      <ul>
+        <% client.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="my-5">
+    <%= form.label "Имя" %>
+    <%= form.text_field :first_name, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label "Фамилия" %>
+    <%= form.text_field :last_name, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label "Номер телефона" %>
+    <%= form.text_field :phone_number, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
+  </div>
+
+  <div class="my-5 flex items-center">
+    <%= form.check_box :loyal_client, class: "h-5 w-5" %>
+    <%= form.label :loyal_client, "Постоянный", class: "ml-2" %>
+  </div>
+
+  <div class="my-5 flex items-center">
+    <%= form.check_box :problematic_client, class: "h-5 w-5" %>
+    <%= form.label :problematic_client, "Проблемный", class: "ml-2" %>
+  </div>
+
+  <div class="inline" style="margin-bottom: 30px;">
+    <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
+  </div>
+
+<% end %>

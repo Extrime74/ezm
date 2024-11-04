@@ -1,0 +1,57 @@
+<div class="w-full">
+  <% if notice.present? %>
+    <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
+  <% end %>
+
+  <% content_for :title, "Orders" %>
+
+  <div class="flex justify-between items-center mb-10">
+    <h1 class="font-bold text-4xl">Заказы</h1>
+    <%= link_to "Новый заказ", new_order_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
+  </div>
+
+  <div class="mb-5 flex flex-wrap">
+    <%= link_to 'Все заказы', orders_path, class: "mr-2 mb-2 px-4 py-2 rounded-lg bg-gray-400 text-black hover:bg-blue-500" %>
+    <% statuses = ['Принят', 'На согласовании', 'В ремонте', 'Ждет запчасти', 'Готов', 'Выдан', 'Возвращен по гарантии'] %>
+    <% statuses.each do |status| %>
+      <%= link_to status, orders_path(status: status), class: "mr-2 mb-2 px-4 py-2 rounded-lg #{get_status_color(status)} text-black hover:#{get_status_color(status).gsub('bg-', 'hover:bg-')}" %>
+    <% end %>
+  </div>
+
+
+
+
+  <div class="container mx-auto">
+    <div class="min-w-[100px] mx-auto bg-white p-5">
+      <table class="min-w-full rounded-lg py-3 border border-gray-200">
+        <thead>
+          <tr class="bg-gray-200">
+            <th class="py-2 px-4 border-b">Заказ №</th>
+            <th class="py-2 px-4 border-b">Устройство</th>
+            <th class="py-2 px-4 border-b">Статус</th>
+            <th class="py-2 px-4 border-b">Неисправность</th>
+            <th class="py-2 px-4 border-b">Клиент</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @orders.each do |order| %>
+            <tr class="hover:bg-gray-50 cursor-pointer" onclick="window.location='<%= order_path(order) %>'">
+              <td class="py-2 px-4 border-b text-center"><%= order.id %></td>
+              <td class="py-2 px-4 border-b text-center"><%= "#{order.device_brand}, #{order.device_model}" %></td>
+              <td class="py-2 px-4 border-b text-center">
+                <div class="<%= get_status_color(order.status) %> p-2 rounded">
+                  <span class="font-medium"><%= order.status %></span>
+                </div>
+              </td>
+              <td class="py-2 px-4 border-b text-center"><%= order.malfunction %></td>
+              <td class="py-2 px-4 border-b text-center">
+                <%= link_to "#{order.client.first_name} #{order.client.last_name}", client_path(order.client), class: 'text-blue-600 font-semibold', onclick: "event.stopPropagation();" %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>

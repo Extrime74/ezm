@@ -1,0 +1,88 @@
+<div id="<%= dom_id order %>">
+
+  <% content_for :title, "Order" %>
+
+  <div class="flex justify-between items-center mb-10">
+    <h1 class="font-bold text-4xl">Заказ №<%= order.id %></h1>
+  </div>
+
+  <p class="my-5">
+    <strong class="block font-medium">Статус ремонта</strong>
+    <%= form_with model: order, local: true do |form| %>
+      <%= form.select :status, 
+          [
+            ['Принят'], 
+            ['На согласовании'], 
+            ['В ремонте'], 
+            ['Ждет запчасти'], 
+            ['Готов'], 
+            ['Выдан'],
+            ['Возвращен по гарантии']
+          ], 
+          { prompt: 'Выберите статус' }, 
+          class: 'form-select' 
+      %>
+      <%= form.submit 'Сохранить', class: "hover:bg-green-200 cursor-pointer ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <% end %>
+  <br>
+  </p>
+
+  <div class="flex gap-4 mb-5">
+    <div class="border p-4 flex-1 rounded shadow">
+      <p class="my-5">
+        <strong class="block font-medium mb-1">Клиент:</strong>
+        <%= link_to "#{order.client.first_name} #{order.client.last_name}", client_path(order.client), class: "bg-white inline-block rounded-t py-2 text-blue-700 font-semibold" %>
+      </p>
+
+      <p class="my-5">
+        <strong class="block font-medium mb-1">Номер телефона:</strong>
+        <%= order.client.phone_number %>
+      </p>
+    </div>
+
+    <div class="border p-4 flex-1 rounded shadow">
+      <p class="my-5">
+        <strong class="block font-medium mb-1">Тип устройства:</strong>
+        <%= order.device_type %>
+      </p>
+
+      <p class="my-5">
+        <strong class="block font-medium mb-1">Бренд, модель:</strong>
+        <%= order.device_brand + ', ' + order.device_model %>
+      </p>
+
+      <p class="my-5">
+        <strong class="block font-medium mb-1">Серийный номер:</strong>
+        <%= order.device_serial %>
+      </p>
+
+      <p class="my-5">
+        <strong class="block font-medium mb-1">Комплектация:</strong>
+        <%= order.device_set %>
+      </p>
+
+      <p class="my-5">
+        <strong class="block font-medium mb-1">Состояние:</strong>
+        <%= order.device_condition %>
+      </p>
+    </div>
+  </div>
+
+  <div class="border p-4 rounded shadow">
+    <p class="my-5">
+      <strong class="block font-medium mb-1">Неисправность:</strong>
+      <%= order.malfunction %>
+    </p>
+
+    <p class="my-5">
+      <strong class="block font-medium mb-1">Примерная стоимость:</strong>
+      <%= order.estimated_cost + "р" %>
+    </p>
+
+    <p class="my-5">
+      <strong class="block font-medium mb-1">Комментарий:</strong>
+      <%= order.comment %>
+    </p>
+  </div>
+
+</div>

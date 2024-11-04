@@ -1,0 +1,69 @@
+# Бинари
+/bin
+/node_modules
+/vendor/bundle
+
+# Системные файлы
+.DS_Store
+*.swp
+*.swo
+
+# Файлы конфигурации IDE
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# Логи
+/log/*
+!/log/.keep
+
+# Данные тестов
+/tmp
+/db/*.sqlite3
+/db/*.sqlite3-journal
+/db/schema.rb
+/db/structure.sql
+/db/*seed*
+
+# Сторонние зависимости
+/vendor/assets
+/vendor/cache
+/vendor/gems
+/vendor/ruby/
+
+# Настройки системы
+/.env
+/.env.local
+/.env.test
+/.env.development
+/.env.production
+/.env.development.local
+/.env.test.local
+/.env.production.local
+
+# Системы кэширования
+/public/assets/*
+!/public/assets/.keep
+
+# Управление ключами
+/config/credentials.yml.enc
+/config/master.key
+
+# Файлы с кэшом Spring
+/tmp/spring*
+
+# Генерируемые файлы
+/public/packs
+/public/packs-test
+/public/packs-dev
+
+# Yarn
+yarn-error.log
+
+# Резервные копии
+*~
+*.bak
+
+# Это добавьте, если используете Webpack
+/public/dist
