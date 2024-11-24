@@ -27,14 +27,14 @@ set :deploy_to, '/home/deploy/ezm'
 # set :pty, true
 
 # Default value for :linked_files is []
-append :linked_files, "config/database.yml", 'config/master.key', fetch(:linked_files, []).push('config/webpacker.yml')
+append :linked_files, "config/database.yml", 'config/master.key'
 
 # Default value for linked_dirs is []
 #append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/system", "vendor", 'vendor/javascript', "storage"
 append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'vendor/javascript', 'storage'
 
 # Default value for default_env is {}
-set :default_env, { 'EZM_DATABASE_PASSWORD' => 'ezm_password' }
+set :default_env, { 'EZM_DATABASE_PASSWORD' => 'ezm_password' }, { 'NODE_OPTIONS' => '--openssl-legacy-provider' }
 
 
 # Default value for local_user is ENV['USER']
